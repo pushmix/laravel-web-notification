@@ -1,0 +1,28 @@
+{
+    "name": "pushmix/laravel-web-notification",
+    "description": "Pushmix Web Notifications",
+    "authors": [
+        {
+            "name": "Alexander",
+            "email": "alexpechkarev@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": ">=5.5",
+    },
+    "autoload": {
+        "psr-4": {
+            "Pushmix\\WebNotification\\": "src/"
+        }
+    },      
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pushmix\\WebNotification\\PushmixServiceProvider"
+            ],
+            "aliases": {
+                "Pushmix": "Pushmix\\WebNotification\\PushmixFacade"
+            }
+        }
+    }    
+}
