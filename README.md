@@ -183,8 +183,8 @@ class PushmixController extends Controller
         // retrive your subscription topics
         $my_topics = Pushmix::getTopics();
 
-        /**
-        content of $my_topics
+        
+        //content of $my_topics
 
          array:2 [
            0 => {
@@ -196,7 +196,7 @@ class PushmixController extends Controller
              "topic_name": "Pushmix News"
            }
          ]
-         **/
+         
 
          $msg_data = [
         // Required Parameters
