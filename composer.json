@@ -1,16 +1,22 @@
 {
     "name": "pushmix/laravel-web-notification",
     "type": "library",
-    "description": "Pushmix Web Notifications Laravel Package",
+    "description": "Pushmix Web Push Notifications Service for Laravel",
     "keywords": ["web notifications","notifications", "pushmix"],
     "homepage": "https://github.com/pushmix/laravel-web-notification",
+    "support": {
+        "issues": "https://github.com/pushmix/laravel-web-notification/issues",
+        "source": "https://github.com/pushmix/laravel-web-notification"
+    },    
     "license": "MIT",    
     "authors": [
         {
-            "name": "Alexander",
-            "email": "alexpechkarev@gmail.com"
+            "name": "Alexander Pechkarev",
+            "email": "alexpechkarev@gmail.com",
+            "homepage": "https://www.pushmix.co.uk"            
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "laravel/framework": ">=5.5"
     },
