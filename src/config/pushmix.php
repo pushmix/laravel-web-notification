@@ -3,7 +3,7 @@ return [
 
 	'subscription_id' => env('PUSHMIX_SUBSCRIPTION_ID', ''),
 
-	'push_url'	  => 'http://localhost/api/push',
-	'topics_url'	  => 'http://localhost/api/get/topics',
+	'push_url'	  => 'https://www.pushmix.co.uk/api/push',
+	'topics_url'	  => 'https://www.pushmix.co.uk/api/get/topics',
 
 ];
