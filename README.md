@@ -1,4 +1,4 @@
-## Pishmix Web Push Notifications Service for Laravel
+## Laravel package for simpliefied integration with Pishmix web push notification service.
 
 ## About
 
@@ -16,7 +16,7 @@ This package integrates Pushmix service with Laravel applications providing foll
 
 Create subscription at [Pushmix](https://www.pushmix.co.uk), copy your `subscription_id` and paste into `.env` file.
 ```bash
-PUSHMIX_SUBSCRIPTION_ID=MY_SUBSCRIPTION_ID
+PUSHMIX_SUBSCRIPTION_ID=ADD_YOUR_PUSHMIX_ID
 ```
 
 The preferred method of installation is via Composer. Run the following command to install the package to your project's `composer.json`:
@@ -30,9 +30,13 @@ Publish package assets and you good to go.
 php artisan vendor:publish --provider="Pushmix\WebNotification\PushmixServiceProvider"
 ```
 
-## Display Opt In Prompt
+## Displaying Opt In Prompt
 
-Display opt in prompt to your website visitor by including it into your template. Alternatively you can manually copy and paste content of `vendor.pushmix.optin` into template. Preview in the web browser to ensure that opt in prompt is trigegred. Please note that web browser must be compatible with Push API, otherwise opt in prompt will not be displayed.
+To display opt in prompt you will need to include block of javascrip into your template using Blade `@include` derictive. 
+
+Alternatively you can copy and paste content of `vendor.pushmix.optin` into template. 
+
+Preview in the web browser to ensure that opt in prompt is trigegred. Please note that web browser must be compatible with Push API, otherwise opt in prompt will not be displayed.
 
 ```bash
     <body>
@@ -57,7 +61,7 @@ Display opt in prompt to your website visitor by including it into your template
 ## Sending Message
 Sending message to your subscribers is simple. First add reference to Pushmix class, than create an array with four requiried parameters.
 
-* `topic` - defines audience you would like to target, see bellow Retrieving Topics
+* `topic` - defines audience you would like to target, see bellow Subscription Topics
 * `title` - notification title, keep it short
 * `body`  - notification body content, keep it short
 * `default_url`  - valid URL, will used when user click on the notification
@@ -103,7 +107,7 @@ class PushmixController extends Controller
     	$msg_data = [
 
     	// Required Parameters
-        'topic'             => 'all', // or topic id from Pushmix::getTopics()
+        'topic'             => 'all', // or topic id from Pushmix::getTopics() call
         'title'             => 'Hello',
         'body'              => 'Welcome to Pushmix!',
         'default_url'       => 'https://www.pushmix.co.uk',
@@ -153,12 +157,14 @@ class PushmixController extends Controller
 
 If you haven't specified additional topics in your subscription in the Pushmix dashboard than you don't need to read this. 
 
-Please note: you can always edit your subscription and add/or remove topics. If you have added new topics to your subscription you will need to call this method in order to obtain your topics id's.
+Please note: you can always edit your subscription and add/or remove topics. If you have recently added new topics to your subscription you will need to call this method in order to obtain your topic id's.
 
-Ability to send messages to all subscribers is great, but sometimes you only need to target those users who have expressed thier interest by opting in one of your topics. Audience segmentation is the solution.
+Ability to send messages to all subscribers is great, but sometimes you only need to target those users who have expressed thier interest by opting to one of your topics. 
 
-To push message to a topic subscribers first you will need to obtain topic id by calling `Pushmix::getTopics()` 
-This call will return an array of topic names and id's or an empty array in case if you haven't created any topics. 
+Once have created topics you can segment your audience and push message to a topic subscribers.
+First you will need to obtain topic id by calling `Pushmix::getTopics()` 
+This call will return an array of topics including name and id.
+An empty array will be returned if you haven't created any topics. 
 
 ```php
 <?php
@@ -196,7 +202,7 @@ class PushmixController extends Controller
         // Required Parameters
         'topic'             => '17', // subscribers of Service Updates topic only
         'title'             => 'New Feature',
-        'body'              => 'Use Pushmix wihin your Laravel application, see details',
+        'body'              => 'Use Pushmix within your Laravel application, see details',
         'default_url'       => 'https://www.pushmix.co.uk/features',
          ];
 
