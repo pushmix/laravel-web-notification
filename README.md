@@ -1,4 +1,4 @@
-## Laravel package for simpliefied integration with Pishmix web push notification service.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pishmix Web Notifications for Laravel.
 
 ## About
 
@@ -7,10 +7,14 @@ This package integrates Pushmix service with Laravel applications providing foll
 * Subscription opt in prompt in your templates 
 * Send push notification messages from Laravel application
 
+You will need Subscription ID to use it. The Subscription ID is free and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
+
 ## Requirements
 * [PHP cURL](http://php.net/manual/en/curl.installation.php)
-* [Pushmix](https://www.pushmix.co.uk) Subscriber Id 
-* Website must use HTTPS protocol
+* Free [Pushmix](https://www.pushmix.co.uk) Subscriber Id 
+* Website must be served via `HTTPS://` or `localhost` to display opt in prompt
+
+View all available [features](https://www.pushmix.co.uk/features) or see [documentation](https://www.pushmix.co.uk/docs) for more details.
 
 ## Installation
 
@@ -215,3 +219,12 @@ class PushmixController extends Controller
     /***/
 }
 ```
+
+## Issues
+If you come across any issues please report them [here](https://github.com/pushmix/laravel-web-notification/issues).
+
+## Security Vulnerabilities
+If you discover a security vulnerability please send an e-mail to support@pushmix.co.uk. 
+
+## License
+The Laravel Web Notification package  is licensed under the MIT License
