@@ -1,13 +1,13 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pishmix Web Notifications for Laravel.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Web Push Notifications for Laravel.
 
 ## About
 
 This package integrates Pushmix service with Laravel applications providing following features:
 
 * Subscription opt in prompt in your templates 
-* Send push notification messages from Laravel application
+* Send web push notifications from Laravel application
 
-You will need Subscription ID to use it. The Subscription ID is free and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
+You will need Subscription ID to use it. The Subscription ID is FREE and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
 
 ## Requirements
 * [PHP cURL](http://php.net/manual/en/curl.installation.php)
@@ -34,13 +34,13 @@ Publish package assets and you good to go.
 php artisan vendor:publish --provider="Pushmix\WebNotification\PushmixServiceProvider"
 ```
 
-## Displaying Opt In Prompt
+## Displaying Opt-In Prompt
 
-To display opt in prompt you will need to include block of javascrip into your template using Blade `@include` derictive. 
+To display opt-in prompt you will need to include block of JavaScrip into your template using Blade `@include` directive. 
 
 Alternatively you can copy and paste content of `vendor.pushmix.optin` into template. 
 
-Preview in the web browser to ensure that opt in prompt is trigegred. Please note that web browser must be compatible with Push API, otherwise opt in prompt will not be displayed.
+Preview in the web browser to ensure that opt-in prompt is triggered. Please note that web browser must be compatible with Push API, otherwise opt-in prompt will not be displayed.
 
 ```bash
     <body>
@@ -52,7 +52,7 @@ Preview in the web browser to ensure that opt in prompt is trigegred. Please not
                 </div>
         </div>
 
-        <!-- Including Opt In Prompt in Blade template-->
+        <!-- Including Opt-In Prompt in Blade template-->
 
         @include('vendor.pushmix.optin')
 
@@ -63,12 +63,12 @@ Preview in the web browser to ensure that opt in prompt is trigegred. Please not
 
 
 ## Sending Message
-Sending message to your subscribers is simple. First add reference to Pushmix class, than create an array with four requiried parameters.
+Sending web push notifications to your subscribers is simple. First add reference to Pushmix class, than create an array with four requiried parameters.
 
-* `topic` - defines audience you would like to target, see bellow Subscription Topics
+* `topic` - defines audience you would like to target, see bellow Subscription Topics section
 * `title` - notification title, keep it short
 * `body`  - notification body content, keep it short
-* `default_url`  - valid URL, will used when user click on the notification
+* `default_url`  - valid URL, used when user clicks the notification
 
 Other parameters are optional. 
 
@@ -142,14 +142,14 @@ class PushmixController extends Controller
         // Action Button title
         'action_title_two'	=> 'Documentation',
         // Action URL - required with action_url_two
-        'action_url_two'	=> 'https://pushmix.github.io/web-notification',
+        'action_url_two'	=> 'https://www.pushmix.co.uk/docs',
 
     	];
 
  
  		Pushmix::push( $msg_data);
 
-    	return view('thankyou');
+    	return view('thank-you');
         
 
     }
@@ -163,9 +163,9 @@ If you haven't specified additional topics in your subscription in the Pushmix d
 
 Please note: you can always edit your subscription and add/or remove topics. If you have recently added new topics to your subscription you will need to call this method in order to obtain your topic id's.
 
-Ability to send messages to all subscribers is great, but sometimes you only need to target those users who have expressed thier interest by opting to one of your topics. 
+Ability to send web push notifications to all subscribers is great, but sometimes you only need to target those users who have expressed thier interest by opting to one of your topics. 
 
-Once have created topics you can segment your audience and push message to a topic subscribers.
+Once you have created topics in Pushmix dashboard you can segment your audience and send web push notifications to specific topic subscribers.
 First you will need to obtain topic id by calling `Pushmix::getTopics()` 
 This call will return an array of topics including name and id.
 An empty array will be returned if you haven't created any topics. 
@@ -207,12 +207,12 @@ class PushmixController extends Controller
         'topic'             => '17', // subscribers of Service Updates topic only
         'title'             => 'New Feature',
         'body'              => 'Use Pushmix within your Laravel application, see details',
-        'default_url'       => 'https://www.pushmix.co.uk/features',
+        'default_url'       => 'https://www.pushmix.co.uk/docs/laravel-package',
          ];
 
         Pushmix::push( $msg_data);
 
-        return view('thankyou');
+        return view('thank-you');
         
 
     }
@@ -227,4 +227,4 @@ If you come across any issues please report them [here](https://github.com/pushm
 If you discover a security vulnerability please send an e-mail to support@pushmix.co.uk. 
 
 ## License
-The Laravel Web Notification package  is licensed under the MIT License
+The Web Push Notifications for Laravel package is licensed under the MIT License
