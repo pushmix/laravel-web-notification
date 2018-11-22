@@ -1,4 +1,4 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Web Push Notifications for Laravel.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Web Push Notifications for Laravel
 
 ## About
 
