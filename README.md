@@ -4,17 +4,17 @@
 
 This package integrates Pushmix service with Laravel applications providing following features:
 
-* Subscription opt in prompt in your templates 
+* Subscription opt-in prompt in your templates 
 * Send web push notifications from Laravel application
 
-You will need Subscription ID to use it. The Subscription ID is FREE and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
+
 
 ## Requirements
 * [PHP cURL](http://php.net/manual/en/curl.installation.php)
-* Free [Pushmix](https://www.pushmix.co.uk) Subscriber Id 
-* Website must be served via `HTTPS://` or `localhost` to display opt in prompt
+* [Pushmix](https://www.pushmix.co.uk) Subscription ID
+* Website must be served via `HTTPS://` or `localhost` to display opt-in prompt
 
-View all available [features](https://www.pushmix.co.uk/features) or see [documentation](https://www.pushmix.co.uk/docs) for more details.
+You will need a Subscription ID to use it. The Subscription ID is FREE and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
 
 ## Installation
 
@@ -36,9 +36,9 @@ php artisan vendor:publish --provider="Pushmix\WebNotification\PushmixServicePro
 
 ## Displaying Opt-In Prompt
 
-To display opt-in prompt you will need to include block of JavaScrip into your template using Blade `@include` directive. 
+To display opt-in prompt you will need to include the block of JavaScript into your template using Blade `@include` directive. 
 
-Alternatively you can copy and paste content of `vendor.pushmix.optin` into template. 
+Alternatively, you can copy and paste the content of `vendor.pushmix.optin` into template. 
 
 Preview in the web browser to ensure that opt-in prompt is triggered. Please note that web browser must be compatible with Push API, otherwise opt-in prompt will not be displayed.
 
@@ -63,7 +63,7 @@ Preview in the web browser to ensure that opt-in prompt is triggered. Please not
 
 
 ## Sending Message
-Sending web push notifications to your subscribers is simple. First add reference to Pushmix class, than create an array with four requiried parameters.
+Sending web push notifications to your subscribers is simple. First, add the reference to `Pushmix` class, then create an array with four required parameters.
 
 * `topic` - defines audience you would like to target, see bellow Subscription Topics section
 * `title` - notification title, keep it short
@@ -72,7 +72,7 @@ Sending web push notifications to your subscribers is simple. First add referenc
 
 Other parameters are optional. 
 
-To push notiication out to your subscribers use push method passing an array of notification parameters
+To send web push notifications to your subscribers use `push` method with an array of notification parameters
 ```php
     Pushmix::push( $msg_data )
 ```
@@ -92,7 +92,7 @@ Error Response
 }
 ```
 
-Full example of push method with all available parameters.
+The full example of the `push` method with all available parameters.
 
 ```php
 <?php
@@ -161,12 +161,12 @@ class PushmixController extends Controller
 
 If you haven't specified additional topics in your subscription in the Pushmix dashboard than you don't need to read this. 
 
-Please note: you can always edit your subscription and add/or remove topics. If you have recently added new topics to your subscription you will need to call this method in order to obtain your topic id's.
+Please note: you can always edit your subscription and add/or remove topics. If you have recently added new topics to your subscription you will need to call this method in order to obtain your topics ID.
 
-Ability to send web push notifications to all subscribers is great, but sometimes you only need to target those users who have expressed thier interest by opting to one of your topics. 
+Ability to send web push notifications to all subscribers is great, but sometimes you only need to target those users who have expressed their interest by opting to one of your topics. 
 
 Once you have created topics in Pushmix dashboard you can segment your audience and send web push notifications to specific topic subscribers.
-First you will need to obtain topic id by calling `Pushmix::getTopics()` 
+First, you will need to obtain topic id by calling `Pushmix::getTopics()` 
 This call will return an array of topics including name and id.
 An empty array will be returned if you haven't created any topics. 
 
