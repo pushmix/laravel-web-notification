@@ -1,9 +1,9 @@
 ## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg?style=flat-square)](https://packagist.org/packages/pushmix/laravel-web-notification)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg?maxAge=2592000)](https://packagist.org/packages/pushmix/laravel-web-notification)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 [![StyleCI](https://github.styleci.io/repos/153896598/shield?branch=master)](https://github.styleci.io/repos/153896598)
-[![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg?style=flat-square)](https://travis-ci.org/lpushmix/laravel-web-notification)
+[![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg)](https://travis-ci.org/lpushmix/laravel-web-notification)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
