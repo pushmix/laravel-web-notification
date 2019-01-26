@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg?style=flat-square)](https://packagist.org/packages/pushmix/laravel-web-notification)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://github.styleci.io/repos/153896598/shield?branch=master)](https://github.styleci.io/repos/153896598)
+[![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg?style=flat-square)](https://travis-ci.org/lpushmix/laravel-web-notification)
 
 ## About
 
