@@ -5,7 +5,6 @@ namespace Pushmix\WebNotification;
 use GuzzleHttp\Client;
 use Pushmix\WebNotification\Exceptions\InvalidConfiguration;
 
-
 class PushmixClient
 {
     protected $api_url;
@@ -18,11 +17,8 @@ class PushmixClient
      */
     public $requestAsync = false;
 
-
-
-
     /**
-     * Class Constructor
+     * Class Constructor.
      */
     public function __construct()
     {
@@ -30,10 +26,11 @@ class PushmixClient
         $this->headers = ['headers' => []];
         $this->headers['headers']['Content-Type'] = 'application/json';
     }
+
     /***/
 
     /**
-     * Turn on, turn off async requests
+     * Turn on, turn off async requests.
      *
      * @param bool $on
      * @return $this
@@ -41,155 +38,153 @@ class PushmixClient
     public function async($on = true)
     {
         $this->requestAsync = $on;
+
         return $this;
     }
 
     /**
-     * Get requestAsync
-     * @return boolean
+     * Get requestAsync.
+     * @return bool
      */
-    public function getRequestAsync(){
-      return $this->requestAsync;
+    public function getRequestAsync()
+    {
+        return $this->requestAsync;
     }
+
     /***/
 
     /**
-     * Initialize API URL Parameter
+     * Initialize API URL Parameter.
      * @return string [description]
      */
-    public function initApiUrl(){
+    public function initApiUrl()
+    {
+        if (is_null(config('pushmix.api_url', null))) {
+            throw InvalidConfiguration::configurationNotSet();
+        }
 
-      if (is_null(config('pushmix.api_url', null))) {
+        $this->api_url = config('pushmix.api_url');
 
-          throw InvalidConfiguration::configurationNotSet();
-      }
-
-      $this->api_url = config('pushmix.api_url');
-
-      return $this;
+        return $this;
     }
+
     /***/
 
     /**
-     * Set APi URL Parameter
+     * Set APi URL Parameter.
      * @param string $api_url [description]
      */
-    public function setApiUrl($api_url){
+    public function setApiUrl($api_url)
+    {
+        $this->api_url = $api_url;
 
-      $this->api_url = $api_url;
-
-      return $this;
+        return $this;
     }
+
     /***/
 
     /**
-     * Get API URL Parameter
+     * Get API URL Parameter.
      * @return string [description]
      */
-    public function getApiUrl(){
-
-      return $this->api_url;
+    public function getApiUrl()
+    {
+        return $this->api_url;
     }
+
     /***/
 
-
     /**
-     * Initialize additional parameters
+     * Initialize additional parameters.
      */
-    public function initKey(){
+    public function initKey()
+    {
+        if (is_null(config('pushmix.subscription_id', null))) {
+            throw InvalidConfiguration::configurationNotSet();
+        }
 
-      if (is_null(config('pushmix.subscription_id', null))) {
+        $this->additionalParams = [
 
-          throw InvalidConfiguration::configurationNotSet();
-      }
-
-      $this->additionalParams = [
-
-        'key_id'    => config('pushmix.subscription_id')
+        'key_id'    => config('pushmix.subscription_id'),
       ];
 
-      return $this;
+        return $this;
     }
+
     /***/
 
     /**
-     * Set SUbscription ID
+     * Set SUbscription ID.
      * @param string $key_id [description]
      */
-    public function setKey($key_id){
+    public function setKey($key_id)
+    {
+        $this->additionalParams = [
 
-      $this->additionalParams = [
-
-        'key_id'    => $key_id
+        'key_id'    => $key_id,
       ];
 
-      return $this;
+        return $this;
     }
+
     /***/
 
     /**
-     * Get Subscription ID from config file
+     * Get Subscription ID from config file.
      *
      * @throw  InvalidConfiguration exception
      * @return string subscription id
      */
-    public function getKey(){
+    public function getKey()
+    {
+        if (is_null(config('pushmix.subscription_id', null))) {
+            throw InvalidConfiguration::configurationNotSet();
+        }
 
-      if (is_null(config('pushmix.subscription_id', null))) {
-
-          throw InvalidConfiguration::configurationNotSet();
-      }
-
-      return $this->additionalParams['key_id'];
+        return $this->additionalParams['key_id'];
     }
+
     /***/
 
     /**
-     * Get an array of additional parameters
+     * Get an array of additional parameters.
      * @return array
      */
-    public function getAdditionalParams(){
-      return $this->additionalParams;
+    public function getAdditionalParams()
+    {
+        return $this->additionalParams;
     }
+
     /***/
 
-
-
     /**
-     * Merge Notification Parameters and Send Notification to Pushmix API
+     * Merge Notification Parameters and Send Notification to Pushmix API.
      *
      * @param array $parameters notification parameters
      * @return mixed
      */
-    public function sendNotification($parameters){
-
-
+    public function sendNotification($parameters)
+    {
         $parameters = array_merge($parameters, $this->additionalParams);
         $this->headers['body'] = json_encode($parameters);
         $this->headers['verify'] = false;
+
         return $this->post();
     }
 
-
-
     /**
-     * POST Call to Pushmix API
+     * POST Call to Pushmix API.
      * @param  string $endPoint API endpoint
      * @return mixed
      */
-    public function post() {
-
-        if($this->requestAsync === true) {
-
+    public function post()
+    {
+        if ($this->requestAsync === true) {
             return $this->client->postAsync($this->api_url, $this->headers);
-
         }
 
-
         return $this->client->post($this->api_url, $this->headers);
-
-
     }
-    /***/
 
+    /***/
 }
