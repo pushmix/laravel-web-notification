@@ -6,6 +6,7 @@
 [![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg?style=flat-square)](https://travis-ci.org/lpushmix/laravel-web-notification)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 
 ## About
