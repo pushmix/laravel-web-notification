@@ -1,4 +1,6 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pishmix Web Notifications for Laravel.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel.
+
+[![StyleCI](https://github.styleci.io/repos/153896598/shield?branch=master)](https://github.styleci.io/repos/153896598)
 
 ## About
 
