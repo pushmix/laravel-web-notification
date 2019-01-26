@@ -1,46 +1,70 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Web Push Notifications for Laravel
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pishmix Web Notifications for Laravel.
 
 ## About
 
-This package integrates Pushmix service with Laravel applications providing following features:
+This package makes it easy to send [Pushmix notifications](https://www.pushmix.co.uk/docs/laravel-package) with Laravel 5.3+.
 
-* Subscription opt-in prompt in your templates 
-* Send web push notifications from Laravel application
+## Contents
 
+- [Setting up your Pushmix account](#setting-up-your-pushmix-account)
+- [Installation](#installation)
+	- [Configuration](#configuration)
+- [Displaying Opt In Prompt](#displaying-opt-in-prompt)
+- [Usage](#usage)
+	- [Available Message methods](#all-available-methods)
+- [Changelog](#changelog)
+- [Testing](#testing)
+- [Issues](#issues)
+- [Security Vulnerabilities](#security-vulnerabilities)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
 
+## Setting up your Pushmix account
 
-## Requirements
-* [PHP cURL](http://php.net/manual/en/curl.installation.php)
-* [Pushmix](https://www.pushmix.co.uk) Subscription ID
-* Website must be served via `HTTPS://` or `localhost` to display opt-in prompt
+If you haven't already, sign up for a free account on [pushmix.co.uk](https://dash.pushmix.co.uk/register).
 
-You will need a Subscription ID to use it. The Subscription ID is FREE and can be obtained from [pushmix.co.uk](https://www.pushmix.co.uk).
+[Create new subscription](https://www.pushmix.co.uk/docs/create-subscription) for your website and choose preferred [integration method](https://www.pushmix.co.uk/docs/installation). Build your subscribers audience via displaying an Opt-In Prompt asking users for permission to send them push notifications.
 
 ## Installation
 
-Create subscription at [Pushmix](https://www.pushmix.co.uk), copy your `subscription_id` and paste into `.env` file.
-```bash
-PUSHMIX_SUBSCRIPTION_ID=ADD_YOUR_PUSHMIX_ID
-```
-
-The preferred method of installation is via Composer. Run the following command to install the package to your project's `composer.json`:
+You can install the package via composer:
 
 ```bash
-composer require pushmix/laravel-web-notification
+$ composer require pushmix/laravel-web-notification
 ```
 
-Publish package assets and you good to go.
+If you're installing the package in Laravel 5.4 or lower, you must import the service provider:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    Pushmix\WebNotification\PushmixServiceProvider::class,
+],
+```
+
+## Configuration
+
+Publish package config and view files:
+
 ```bash
 php artisan vendor:publish --provider="Pushmix\WebNotification\PushmixServiceProvider"
 ```
 
-## Displaying Opt-In Prompt
+Add your Subscription ID into `.env` file:
 
-To display opt-in prompt you will need to include the block of JavaScript into your template using Blade `@include` directive. 
+```bash
+PUSHMIX_SUBSCRIPTION_ID=PASTE_YOUR_SUBSCRIPTION_ID_HERE
+```
 
-Alternatively, you can copy and paste the content of `vendor.pushmix.optin` into template. 
 
-Preview in the web browser to ensure that opt-in prompt is triggered. Please note that web browser must be compatible with Push API, otherwise opt-in prompt will not be displayed.
+
+## Displaying Opt In Prompt
+
+To display Opt-In Prompt you will need to include block of JavaScript into your template using Blade `@include` directive.
+
+Alternatively you can copy and paste content of `vendor.pushmix.optin` into template.
 
 ```bash
     <body>
@@ -52,7 +76,7 @@ Preview in the web browser to ensure that opt-in prompt is triggered. Please not
                 </div>
         </div>
 
-        <!-- Including Opt-In Prompt in Blade template-->
+        <!-- Including Opt In Prompt in Blade template-->
 
         @include('vendor.pushmix.optin')
 
@@ -60,171 +84,101 @@ Preview in the web browser to ensure that opt-in prompt is triggered. Please not
     ...
 ```
 
+## Usage
 
+Now you can use the channel in your `via()` method inside the notification:
 
-## Sending Message
-Sending web push notifications to your subscribers is simple. First, add the reference to `Pushmix` class, then create an array with four required parameters.
+``` php
+use Pushmix\WebNotification\PushmixChannel;
+use Pushmix\WebNotification\PushmixMessage;
+use Illuminate\Notifications\Notification;
 
-* `topic` - defines audience you would like to target, see bellow Subscription Topics section
-* `title` - notification title, keep it short
-* `body`  - notification body content, keep it short
-* `default_url`  - valid URL, used when user clicks the notification
-
-Other parameters are optional. 
-
-To send web push notifications to your subscribers use `push` method with an array of notification parameters
-```php
-    Pushmix::push( $msg_data )
-```
-Success Response
-
-```bash
+class AbandonedCart extends Notification
 {
-  "succes": true
-}
-```
+    public function via($notifiable)
+    {
+        return [PushmixChannel::class];
+    }
 
-Error Response
-
-```bash
-{
-  "error": "Error message"
-}
-```
-
-The full example of the `push` method with all available parameters.
-
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Pushmix;
-
-class PushmixController extends Controller
-{
-
-    public function index()
+		public function toPushmix($to)
     {
 
-    	$msg_data = [
+      return PushmixMessage::create($to)
+						/* Required Parameters */
+          ->title("You still have items in your Cart!")
+          ->body("There's still time to complete your order. Return to your cart?")
+          ->url("https://www.pushmix.co.uk")
 
-    	// Required Parameters
-        'topic'             => 'all', // or topic id from Pushmix::getTopics() call
-        'title'             => 'Hello',
-        'body'              => 'Welcome to Pushmix!',
-        'default_url'       => 'https://www.pushmix.co.uk',
-
-
-        // Optional Parameters
-
-        // Notification Life Span
-        'time_to_live'      => '3600', // 1 hour
-
-        // MEsage Priority
-        'priority'          => 'high', // or normal    
-                                       	
-        // Notification Icon
-        'icon' 		=> 'https://www.pushmix.co.uk/media/favicons/apple-touch-icon.png',
-
-        // Notification Badge Icon
-        'badge'		=> 'https://www.pushmix.co.uk/media/favicons/pm_badge_v2.png',
-
-       	 // Large Image
-        'image'		=> 'https://www.pushmix.co.uk/media/photos/photo16.jpg',
-
-        // Action Button title
-        'action_title_one'	=> 'Features',
-        // Action URL - required with action_url_one
-        'action_url_one'	=> 'https://www.pushmix.co.uk/features',
-
-        // Action Button title
-        'action_title_two'	=> 'Documentation',
-        // Action URL - required with action_url_two
-        'action_url_two'	=> 'https://www.pushmix.co.uk/docs',
-
-    	];
-
- 
- 		Pushmix::push( $msg_data);
-
-    	return view('thank-you');
-        
-
+					/* Optional Parameters */
+          ->button("Return to your cart", "https://www.pushmix.co.uk/docs") // button one
+          ->priority("high")
+          ->ttl(7200) // time to live
+          ->icon("https://www.pushmix.co.uk/media/favicons/apple-touch-icon.png")
+          ->badge("https://www.pushmix.co.uk/media/favicons/pm_badge_v2.png")
+          ->image("https://www.pushmix.co.uk/media/photos/photo16.jpg");
     }
-    /***/
 }
 ```
 
-## Subscription Topics
-
-If you haven't specified additional topics in your subscription in the Pushmix dashboard than you don't need to read this. 
-
-Please note: you can always edit your subscription and add/or remove topics. If you have recently added new topics to your subscription you will need to call this method in order to obtain your topics ID.
-
-Ability to send web push notifications to all subscribers is great, but sometimes you only need to target those users who have expressed their interest by opting to one of your topics. 
-
-Once you have created topics in Pushmix dashboard you can segment your audience and send web push notifications to specific topic subscribers.
-First, you will need to obtain topic id by calling `Pushmix::getTopics()` 
-This call will return an array of topics including name and id.
-An empty array will be returned if you haven't created any topics. 
+The notifications will be sent to the audience, which subscribed via Opt-In Prompt displayed on your website.
+Using the `Notification::route` method, you can specify which subscribers group you are targeting.
 
 ```php
-<?php
+use Notification;
+use App\Notifications\AbandonedCart;
+...
+// Target All Subscribed Users
+Notification::route('Pushmix', 'all')->notify(new AbandonedCart());
 
-namespace App\Http\Controllers;
+// Target Topic One Subscribers
+Notification::route('Pushmix', 'one')->notify(new AbandonedCart());
 
-use Illuminate\Http\Request;
-use Pushmix;
+// Target Topic Two Subscribers
+Notification::route('Pushmix', 'two')->notify(new AbandonedCart());
 
-class PushmixController extends Controller
-{
 
-    public function index()
-    {
-        
-        // retrive your subscription topics
-        $my_topics = Pushmix::getTopics();
-
-        
-        //content of $my_topics
-
-         array:2 [
-           0 => {
-             "id": 17
-             "topic_name": "Service Updates"
-           }
-           1 => {
-             "id": 18
-             "topic_name": "Pushmix News"
-           }
-         ]
-         
-
-         $msg_data = [
-        // Required Parameters
-        'topic'             => '17', // subscribers of Service Updates topic only
-        'title'             => 'New Feature',
-        'body'              => 'Use Pushmix within your Laravel application, see details',
-        'default_url'       => 'https://www.pushmix.co.uk/docs/laravel-package',
-         ];
-
-        Pushmix::push( $msg_data);
-
-        return view('thank-you');
-        
-
-    }
-    /***/
-}
 ```
+### All available methods
+
+[Pushmix documentation](https://www.pushmix.co.uk/docs/api)
+
+- `title('')`: Accepts a string value for the title, required*
+- `body('')`: Accepts a string value for the notification body,required*
+- `url('')`: Accepts an url for the notification click event,required*
+
+- `button('', '')`: Accepts string value for button title and an url for the notification click event. Max 2 buttons can be attached.
+- `icon('')`: Accepts an url for the icon.
+- `priority('')`: Accepts `high` or `normal` strings.
+- `ttl('')`: Accepts an integer, notification life span in seconds,must be from 0 to 2,419,200
+- `icon('')`: Accepts an url for the icon.
+- `badge('')`: Accepts an url for the badge.
+- `image('')`: Accepts an url for the large image.
+
+
+## Testing
+
+Navigate into the package folder `vendor/pushmix/laravel-web-notification` and issue following command:
+
+```bash
+$ composer test
+```
+
 
 ## Issues
+
 If you come across any issues please report them [here](https://github.com/pushmix/laravel-web-notification/issues).
 
 ## Security Vulnerabilities
-If you discover a security vulnerability please send an e-mail to support@pushmix.co.uk. 
+If you discover a security vulnerability please send an e-mail to support@pushmix.co.uk.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Alexander Pechkarev](https://github.com/alexpechkarev)
 
 ## License
-The Web Push Notifications for Laravel package is licensed under the MIT License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

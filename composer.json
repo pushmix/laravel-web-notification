@@ -1,30 +1,47 @@
 {
     "name": "pushmix/laravel-web-notification",
     "type": "library",
-    "description": "Pushmix Web Push Notifications Service for Laravel",
-    "keywords": ["web notifications","notifications", "pushmix"],
+    "description": "Pushmix Web Push Notifications Channel for Laravel",
+    "keywords": ["web notifications","laravel notification channel", "pushmix"],
     "homepage": "https://github.com/pushmix/laravel-web-notification",
     "support": {
         "issues": "https://github.com/pushmix/laravel-web-notification/issues",
         "source": "https://github.com/pushmix/laravel-web-notification"
-    },    
-    "license": "MIT",    
+    },
+    "license": "MIT",
     "authors": [
         {
             "name": "Alexander Pechkarev",
             "email": "alexpechkarev@gmail.com",
-            "homepage": "https://www.pushmix.co.uk"            
+            "homepage": "https://www.pushmix.co.uk",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "laravel/framework": ">=5.5"
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "illuminate/notifications": "5.*",
+        "illuminate/support": "5.*"
+    },
+    "require-dev": {
+      "mockery/mockery": "^1.0",
+      "orchestra/testbench": "^3.5",
+      "phpunit/phpunit": "^6.4"
     },
     "autoload": {
         "psr-4": {
             "Pushmix\\WebNotification\\": "src/"
         }
-    },      
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pushmix\\WebNotification\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -34,5 +51,8 @@
                 "Pushmix": "Pushmix\\WebNotification\\PushmixFacade"
             }
         }
-    }    
+    },
+    "config": {
+        "sort-packages": true
+    }
 }
