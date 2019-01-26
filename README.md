@@ -4,6 +4,9 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://github.styleci.io/repos/153896598/shield?branch=master)](https://github.styleci.io/repos/153896598)
 [![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg?style=flat-square)](https://travis-ci.org/lpushmix/laravel-web-notification)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/pushmix/laravel-web-notification/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+
 
 ## About
 
