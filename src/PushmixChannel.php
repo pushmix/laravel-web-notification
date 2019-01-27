@@ -31,7 +31,7 @@ class PushmixChannel
             return;
         }
 
-        $parameters = $notification->/** @scrutinizer ignore-call */toPushmix($to)->toArray();
+        $parameters = $notification->/* @scrutinizer ignore-call */toPushmix($to)->toArray();
 
         // initialize subscription key and api url
         $this->pusmixClient->initKey()->initApiUrl();
