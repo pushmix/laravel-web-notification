@@ -1,6 +1,6 @@
 ## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg?maxAge=2592000)](https://packagist.org/packages/pushmix/laravel-web-notification)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg)](https://packagist.org/packages/pushmix/laravel-web-notification)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 [![StyleCI](https://github.styleci.io/repos/153896598/shield?branch=master)](https://github.styleci.io/repos/153896598)
 [![Build Status](https://img.shields.io/travis/pushmix/laravel-web-notification/master.svg)](https://travis-ci.org/lpushmix/laravel-web-notification)
