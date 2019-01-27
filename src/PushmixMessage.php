@@ -31,6 +31,9 @@ class PushmixMessage
     /** @var string */
     public $badge;
 
+    /** @var string */
+    public $image;    
+
     /** @var array */
     public $buttons = [];
 
