@@ -1,7 +1,7 @@
 {
     "name": "pushmix/laravel-web-notification",
     "type": "library",
-    "description": "Pushmix Notification Driver for Laravel",
+    "description": "Pushmix Notification Driver for Laravel 5.5",
     "keywords": ["web notifications","laravel notification channels","laravel notifications driver", "pushmix"],
     "homepage": "https://github.com/pushmix/laravel-web-notification",
     "support": {
