@@ -40,7 +40,7 @@ If you haven't already, sign up for a free account on [pushmix.co.uk](https://da
 You can install the package via composer:
 
 ```bash
-$ composer require pushmix/laravel-web-notification
+$ composer require pushmix/laravel-web-notification:1.2
 ```
 
 If you're installing the package in Laravel 5.4 or lower, you must import the service provider:
