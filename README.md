@@ -1,4 +1,4 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel 5.7.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel 5.8.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg)](https://packagist.org/packages/pushmix/laravel-web-notification)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
@@ -11,7 +11,7 @@
 
 ## About
 
-This package makes it easy to send [Pushmix notifications](https://www.pushmix.co.uk/docs/laravel-package) with Laravel 5.7.
+This package makes it easy to send [Pushmix notifications](https://www.pushmix.co.uk/docs/laravel-package) with Laravel 5.8.
 
 ## Contents
 
@@ -40,7 +40,7 @@ If you haven't already, sign up for a free account on [pushmix.co.uk](https://da
 You can install the package via composer:
 
 ```bash
-$ composer require pushmix/laravel-web-notification:1.4
+$ composer require pushmix/laravel-web-notification:1.5
 ```
 
 If you're installing the package in Laravel 5.4 or lower, you must import the service provider:
