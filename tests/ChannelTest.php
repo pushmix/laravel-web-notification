@@ -9,8 +9,10 @@ use Pushmix\WebNotification\PushmixChannel;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Pushmix\WebNotification\Exceptions\CouldNotSendNotification;
 
-class ChannelTest extends TestCase
-{
+class ChannelTest extends TestCase{
+
+    protected $SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
+
     public function setUp()
     {
         parent::setUp();
@@ -19,7 +21,7 @@ class ChannelTest extends TestCase
     protected function getEnvironmentSetUp($app)
     {
         //setup db config if needed
-        $app['config']->set('pushmix.subscription_id', 'SUBSCRIPTION_ID');
+        $app['config']->set('pushmix.subscription_id', $this->SUBSCRIPTION_ID);
         $app['config']->set('pushmix.api_url', 'https://www.pushmix.co.uk/api/notify');
     }
 

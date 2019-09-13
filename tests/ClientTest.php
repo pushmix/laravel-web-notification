@@ -12,6 +12,8 @@ class ClientTest extends TestCase
 {
     protected $client;
 
+    protected $SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
+
     public function setUp()
     {
         parent::setUp();
@@ -45,9 +47,9 @@ class ClientTest extends TestCase
     public function it_can_get_key()
     {
         $client = new PushmixClient();
-        \Config::set('pushmix.subscription_id', 'SUBSCRIPTION_ID');
+        \Config::set('pushmix.subscription_id', $this->SUBSCRIPTION_ID);
         $client->initKey();
-        $this->assertSame('SUBSCRIPTION_ID', $client->getKey());
+        $this->assertSame($this->SUBSCRIPTION_ID, $client->getKey());
     }
 
     /***/
@@ -108,7 +110,7 @@ class ClientTest extends TestCase
     public function it_can_send_notification()
     {
         \Config::set('pushmix.api_url', 'https://www.pushmix.co.uk/api/notify');
-        \Config::set('pushmix.subscription_id', 'SUBSCRIPTION_ID');
+        \Config::set('pushmix.subscription_id', $this->SUBSCRIPTION_ID);
         $client = new PushmixClient();
         $client->initKey()->initApiUrl();
         $response = $client->sendNotification([
@@ -127,7 +129,7 @@ class ClientTest extends TestCase
     public function it_can_send_notification_async()
     {
         \Config::set('pushmix.api_url', 'https://www.pushmix.co.uk/api/notify');
-        \Config::set('pushmix.subscription_id', 'SUBSCRIPTION_ID');
+        \Config::set('pushmix.subscription_id', $this->SUBSCRIPTION_ID);
         $client = new PushmixClient();
         $client->initKey()->initApiUrl();
         $client->async(true);

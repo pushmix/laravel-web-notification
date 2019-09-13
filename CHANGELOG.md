@@ -12,7 +12,7 @@ All notable changes to `pushmix/laravel-web-notification` will be documented in 
 
 ## v1.1 - 2019-01-27
 
-- applying scrutinizer sugestions
+- applying scrutinizer suggestions
 - adding CODE_OF_CONDUCT.md
 - adding CONTRIBUTING.md
 - adding LICENSE.md
