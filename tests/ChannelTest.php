@@ -9,7 +9,8 @@ use Pushmix\WebNotification\PushmixChannel;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Pushmix\WebNotification\Exceptions\CouldNotSendNotification;
 
-class ChannelTest extends TestCase{
+class ChannelTest extends TestCase
+{
 
     protected $SUBSCRIPTION_ID = "SUBSCRIPTION_ID";
 

@@ -17,3 +17,7 @@ All notable changes to `pushmix/laravel-web-notification` will be documented in 
 - adding CONTRIBUTING.md
 - adding LICENSE.md
 - adding github/ISSUE_TEMPLATE
+
+## v1.2 - 2019-09-13
+
+- adding support for Laravel 5.5
