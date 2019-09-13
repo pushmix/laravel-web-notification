@@ -1,9 +1,9 @@
 {
     "name": "pushmix/laravel-web-notification",
     "type": "library",
-    "description": "Pushmix Notification Driver for Laravel",
+    "description": "Pushmix Notification Driver for Laravel 5.7",
     "keywords": ["web notifications","laravel notification channels","laravel notifications driver", "pushmix"],
-    "homepage": "https://github.com/pushmix/laravel-web-notification",
+    "homepage": "https://github.com/pushmix/laravel-web-notification/tree/5.7",
     "support": {
         "issues": "https://github.com/pushmix/laravel-web-notification/issues",
         "source": "https://github.com/pushmix/laravel-web-notification"
@@ -19,7 +19,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.3",
         "guzzlehttp/guzzle": "^6.3@dev",
         "illuminate/notifications": "5.*",
         "illuminate/support": "5.*"
