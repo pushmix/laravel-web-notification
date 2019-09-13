@@ -1,4 +1,4 @@
-## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel 5.5.
+## ![Pushmix](https://www.pushmix.co.uk/media/favicons/favicon-32x32.png) Pushmix Notifications Driver for Laravel 6.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pushmix/laravel-web-notification.svg)](https://packagist.org/packages/pushmix/laravel-web-notification)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
@@ -11,7 +11,7 @@
 
 ## About
 
-This package makes it easy to send [Pushmix notifications](https://www.pushmix.co.uk/docs/laravel-package) with Laravel 5.5.
+This package makes it easy to send [Pushmix notifications](https://www.pushmix.co.uk/docs/laravel-package) with Laravel 6.
 
 ## Contents
 
@@ -40,7 +40,7 @@ If you haven't already, sign up for a free account on [pushmix.co.uk](https://da
 You can install the package via composer:
 
 ```bash
-$ composer require pushmix/laravel-web-notification
+$ composer require pushmix/laravel-web-notification:dev-master
 ```
 
 If you're installing the package in Laravel 5.4 or lower, you must import the service provider:
@@ -113,12 +113,12 @@ class AbandonedCart extends Notification
     {
 
       return PushmixMessage::create($to)
-						/* Required Parameters */
+		  /* Required Parameters */
           ->title("You still have items in your Cart!")
           ->body("There's still time to complete your order. Return to your cart?")
           ->url("https://www.pushmix.co.uk")
 
-					/* Optional Parameters */
+		  /* Optional Parameters */
           ->button("Return to your cart", "https://www.pushmix.co.uk/docs") // button one
           ->priority("high")
           ->ttl(7200) // time to live
